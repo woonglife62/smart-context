@@ -1,0 +1,21 @@
+{
+  "name": "smart-context-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Claude Code plugin with a local smart_context MCP tool for efficient code discovery.",
+  "bin": {
+    "smart-context-mcp": "./mcp/smart-context-server.js"
+  },
+  "scripts": {
+    "test": "node --test",
+    "test:unit": "node --test test/query.test.js test/pathSafety.test.js test/snippets.test.js test/tokenBudget.test.js test/ranker.test.js",
+    "test:integration": "node --test test/searchEngine.test.js test/logger.test.js test/mcpServer.test.js",
+    "start:mcp": "node mcp/smart-context-server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {}
+}

@@ -1,1 +1,9 @@
 .worktrees/
+node_modules/
+.smart-context/
+coverage/
+dist/
+build/
+.DS_Store
+*.log
+.omc/
