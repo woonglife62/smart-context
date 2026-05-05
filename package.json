@@ -8,7 +8,7 @@
     "smart-context-mcp": "./mcp/smart-context-server.js"
   },
   "scripts": {
-    "test": "node --test test/query.test.js test/pathSafety.test.js test/snippets.test.js test/tokenBudget.test.js test/ranker.test.js test/scanner.test.js test/searchEngine.test.js test/logger.test.js test/mcpServer.test.js test/stats.test.js test/evalMetrics.test.js test/evalBaseline.test.js test/evalReport.test.js",
+    "test": "node --test test/query.test.js test/pathSafety.test.js test/snippets.test.js test/tokenBudget.test.js test/ranker.test.js test/scanner.test.js test/searchEngine.test.js test/logger.test.js test/mcpServer.test.js test/stats.test.js test/evalMetrics.test.js test/evalBaseline.test.js test/evalReport.test.js test/workflowEvalParser.test.js test/workflowEvalMetrics.test.js test/workflowEvalReport.test.js",
     "test:unit": "node --test test/query.test.js test/pathSafety.test.js test/snippets.test.js test/tokenBudget.test.js test/ranker.test.js test/scanner.test.js",
     "test:integration": "node --test test/searchEngine.test.js test/logger.test.js test/mcpServer.test.js test/stats.test.js",
     "start:mcp": "node mcp/smart-context-server.js"
