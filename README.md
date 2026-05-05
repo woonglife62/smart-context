@@ -58,6 +58,21 @@ Logs do not store full prompts, query text, code snippets, model responses, secr
 
 Savings numbers are approximate. They compare a simple baseline for separate discovery calls against the approximate tokens returned by `smart_context`.
 
+## Stats
+
+Use the `/smart-context:smart-context-stats` slash command to view aggregated usage logs:
+
+```
+/smart-context:smart-context-stats
+```
+
+This reads all `.smart-context/logs/*.jsonl` files and reports total calls, tokens returned, tokens saved, per-mode breakdown, and the date range of logs. You can also run the script directly:
+
+```bash
+node scripts/stats.js
+node scripts/stats.js --json
+```
+
 ## Development
 
 ```bash
