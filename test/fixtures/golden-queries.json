@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "queries": [
+    { "id": "exact-1", "category": "exact_identifier", "query": "smartContext function definition", "mode": "brief", "expected": { "top1": "src/searchEngine.js", "top3": ["src/searchEngine.js", "mcp/smart-context-server.js"] } },
+    { "id": "exact-2", "category": "exact_identifier", "query": "tokenBudget trim", "mode": "brief", "expected": { "top1": "src/tokenBudget.js", "top3": ["src/tokenBudget.js", "test/tokenBudget.test.js"] } },
+    { "id": "exact-3", "category": "exact_identifier", "query": "pathSafety validation", "mode": "brief", "expected": { "top1": "src/pathSafety.js", "top3": ["src/pathSafety.js", "test/pathSafety.test.js"] } },
+    { "id": "concept-1", "category": "conceptual", "query": "how queries are tokenized", "mode": "brief", "expected": { "top1": "src/query.js", "top3": ["src/query.js", "test/query.test.js"] } },
+    { "id": "concept-2", "category": "conceptual", "query": "where ranking score is computed", "mode": "brief", "expected": { "top1": "src/ranker.js", "top3": ["src/ranker.js", "test/ranker.test.js"] } },
+    { "id": "concept-3", "category": "conceptual", "query": "usage logging and stats", "mode": "brief", "expected": { "top1": "src/logger.js", "top3": ["src/logger.js", "scripts/stats.js", "test/logger.test.js"] } },
+    { "id": "camel-1", "category": "camelcase_split", "query": "tokenBudgetTrim", "mode": "brief", "expected": { "top1": "src/tokenBudget.js", "top3": ["src/tokenBudget.js"] } },
+    { "id": "camel-2", "category": "camelcase_split", "query": "pathSafetyValidation", "mode": "brief", "expected": { "top1": "src/pathSafety.js", "top3": ["src/pathSafety.js"] } },
+    { "id": "camel-3", "category": "camelcase_split", "query": "searchEngineCompose", "mode": "brief", "expected": { "top1": "src/searchEngine.js", "top3": ["src/searchEngine.js"] } },
+    { "id": "prose-1", "category": "prose_only", "query": "install instructions", "mode": "brief", "expected": { "top1": "README.md", "top3": ["README.md"] } },
+    { "id": "prose-2", "category": "prose_only", "query": "privacy guarantees", "mode": "brief", "expected": { "top1": "README.md", "top3": ["README.md"] } },
+    { "id": "prose-3", "category": "prose_only", "query": "design rationale for modes", "mode": "brief", "expected": { "top1": "docs/superpowers/specs/2026-05-05-smart-context-design.md", "top3": ["docs/superpowers/specs/2026-05-05-smart-context-design.md"] } },
+    { "id": "distract-1", "category": "distractor", "query": "error handling", "mode": "brief", "expected": { "top1": "src/errors.js", "top3": ["src/errors.js", "src/searchEngine.js"] } },
+    { "id": "distract-2", "category": "distractor", "query": "test fixtures", "mode": "brief", "expected": { "top1": "test/fixtures/golden-queries.json", "top3": ["test/fixtures/golden-queries.json"] } },
+    { "id": "distract-3", "category": "distractor", "query": "mcp server start", "mode": "brief", "expected": { "top1": "mcp/smart-context-server.js", "top3": ["mcp/smart-context-server.js"] } },
+    { "id": "edge-1", "category": "edge", "query": "", "mode": "brief", "expected": { "top1": null, "top3": [], "must_not_throw": true } },
+    { "id": "edge-2", "category": "edge", "query": "aaaaa", "mode": "brief", "expected": { "top1": null, "top3": [], "must_not_throw": true } },
+    { "id": "edge-3", "category": "edge", "query": "인증 미들웨어", "mode": "brief", "expected": { "top1": null, "top3": [], "must_not_throw": true } }
+  ]
+}
