@@ -11,7 +11,7 @@ function isTestFile(file) {
 function proseMultiplier(relativeFile) {
   const lower = relativeFile.toLowerCase();
   for (const ext of PROSE_EXTENSIONS) {
-    if (lower.endsWith(ext)) return 0.5;
+    if (lower.endsWith(ext)) return 0.2;
   }
   return 1;
 }

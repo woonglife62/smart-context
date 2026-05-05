@@ -65,8 +65,8 @@ test("rankMatches deprioritizes .txt files like markdown", () => {
     }
   ];
   const ranked = rankMatches("/x", matches, ["auth"], "auth middleware");
-  // 0 path matches (notes.txt has no "auth"), density 2, symbol (function) 2, non-test 2 = 6 -> *0.5 = 3
-  assert.equal(ranked[0].score, 3);
+  // 0 path matches (notes.txt has no "auth"), density 2, symbol (function) 2, non-test 2 = 6 -> *0.2 = 1.2
+  assert.ok(Math.abs(ranked[0].score - 1.2) < 0.01, `expected ~1.2 got ${ranked[0].score}`);
 });
 
 test("rankMatches finds createUser.ts via expanded camelCase keywords", async () => {
