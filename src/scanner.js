@@ -65,6 +65,7 @@ function ripgrepCandidates() {
 }
 
 function detectRipgrep() {
+  if (process.env.SMART_CONTEXT_DISABLE_RG === "1") return null;
   if (cachedRipgrepBinary !== undefined) return cachedRipgrepBinary;
   for (const candidate of ripgrepCandidates()) {
     try {

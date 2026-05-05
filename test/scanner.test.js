@@ -62,3 +62,14 @@ test("scanFilesWithRipgrep matches Node implementation when rg available", { ski
     assert.ok(Array.isArray(entry.matches));
   }
 });
+
+test("isRipgrepAvailable returns false when SMART_CONTEXT_DISABLE_RG is set", () => {
+  const previous = process.env.SMART_CONTEXT_DISABLE_RG;
+  process.env.SMART_CONTEXT_DISABLE_RG = "1";
+  try {
+    assert.equal(isRipgrepAvailable(), false);
+  } finally {
+    if (previous === undefined) delete process.env.SMART_CONTEXT_DISABLE_RG;
+    else process.env.SMART_CONTEXT_DISABLE_RG = previous;
+  }
+});
