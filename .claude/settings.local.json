@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_smart-context_smart-context-local__smart_context"
+    ]
+  }
+}
