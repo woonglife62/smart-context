@@ -40,7 +40,7 @@
 - Create: `agents/smart-context-agent.md`
 - Create: `README.md`
 
-- [ ] **Step 1: Create package metadata**
+- [x] **Step 1: Create package metadata**
 
 Create `package.json`:
 
@@ -61,18 +61,19 @@ Create `package.json`:
     "start:mcp": "node mcp/smart-context-server.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.20.0",
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "zod": "^3.25.0"
   },
   "devDependencies": {}
 }
 ```
 
-- [ ] **Step 2: Add ignore rules**
+- [x] **Step 2: Add ignore rules**
 
-Create `.gitignore`:
+A `.gitignore` already exists at the repo root containing `.worktrees/`. APPEND new lines (do not overwrite). Final contents must be:
 
 ```gitignore
+.worktrees/
 node_modules/
 .smart-context/
 coverage/
@@ -82,7 +83,7 @@ build/
 *.log
 ```
 
-- [ ] **Step 3: Add plugin metadata**
+- [x] **Step 3: Add plugin metadata**
 
 Create `.claude-plugin/plugin.json`:
 
@@ -101,7 +102,7 @@ Create `.claude-plugin/plugin.json`:
 }
 ```
 
-- [ ] **Step 4: Add agent instructions**
+- [x] **Step 4: Add agent instructions**
 
 Create `agents/smart-context-agent.md`:
 
@@ -121,7 +122,7 @@ Use `mode: "brief"` for ordinary discovery, `mode: "explain"` when the user asks
 Use normal file reads when the exact file is already known and full-file context is required.
 ```
 
-- [ ] **Step 5: Add README**
+- [x] **Step 5: Add README**
 
 Create `README.md`:
 
@@ -155,13 +156,13 @@ npm run start:mcp
 ```
 ```
 
-- [ ] **Step 6: Run package script smoke test**
+- [x] **Step 6: Run package script smoke test**
 
 Run: `npm test`
 
 Expected: Node reports no tests found or exits successfully after test files are added in later tasks. If `npm install` has not been run, run `npm install` first.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add package.json .gitignore .claude-plugin/plugin.json agents/smart-context-agent.md README.md
@@ -178,7 +179,7 @@ git commit -m "chore: scaffold smart context plugin"
 - Create: `test/query.test.js`
 - Create: `test/pathSafety.test.js`
 
-- [ ] **Step 1: Write query tests**
+- [x] **Step 1: Write query tests**
 
 Create `test/query.test.js`:
 
@@ -207,7 +208,7 @@ test("hashQuery returns stable short hashes without exposing text", () => {
 });
 ```
 
-- [ ] **Step 2: Write path safety tests**
+- [x] **Step 2: Write path safety tests**
 
 Create `test/pathSafety.test.js`:
 
@@ -236,13 +237,13 @@ test("resolveSearchPaths rejects traversal outside workspace", () => {
 });
 ```
 
-- [ ] **Step 3: Run tests to verify failure**
+- [x] **Step 3: Run tests to verify failure**
 
 Run: `node --test test/query.test.js test/pathSafety.test.js`
 
 Expected: FAIL with module-not-found errors for `src/query.js` and `src/pathSafety.js`.
 
-- [ ] **Step 4: Implement config**
+- [x] **Step 4: Implement config**
 
 Create `src/config.js`:
 
@@ -270,7 +271,7 @@ export const DEFAULT_BUDGETS = {
 export const MAX_TOKEN_BUDGET = 30000;
 ```
 
-- [ ] **Step 5: Implement errors**
+- [x] **Step 5: Implement errors**
 
 Create `src/errors.js`:
 
@@ -292,7 +293,7 @@ export function structuredError(error) {
 }
 ```
 
-- [ ] **Step 6: Implement query helpers**
+- [x] **Step 6: Implement query helpers**
 
 Create `src/query.js`:
 
@@ -314,7 +315,7 @@ export function hashQuery(query) {
 }
 ```
 
-- [ ] **Step 7: Implement path safety**
+- [x] **Step 7: Implement path safety**
 
 Create `src/pathSafety.js`:
 
@@ -341,13 +342,13 @@ export function resolveSearchPaths(workspaceRoot, paths) {
 }
 ```
 
-- [ ] **Step 8: Run tests to verify pass**
+- [x] **Step 8: Run tests to verify pass**
 
 Run: `node --test test/query.test.js test/pathSafety.test.js`
 
 Expected: PASS.
 
-- [ ] **Step 9: Commit**
+- [x] **Step 9: Commit**
 
 ```bash
 git add src/config.js src/errors.js src/query.js src/pathSafety.js test/query.test.js test/pathSafety.test.js
@@ -362,7 +363,7 @@ git commit -m "feat: add query and path safety helpers"
 - Create: `test/snippets.test.js`
 - Create: `test/tokenBudget.test.js`
 
-- [ ] **Step 1: Write snippet tests**
+- [x] **Step 1: Write snippet tests**
 
 Create `test/snippets.test.js`:
 
@@ -394,7 +395,7 @@ test("dedupeSnippets removes overlapping snippets", () => {
 });
 ```
 
-- [ ] **Step 2: Write token budget tests**
+- [x] **Step 2: Write token budget tests**
 
 Create `test/tokenBudget.test.js`:
 
@@ -418,13 +419,13 @@ test("trimToBudget removes low ranked snippets first", () => {
 });
 ```
 
-- [ ] **Step 3: Run tests to verify failure**
+- [x] **Step 3: Run tests to verify failure**
 
 Run: `node --test test/snippets.test.js test/tokenBudget.test.js`
 
 Expected: FAIL with module-not-found errors.
 
-- [ ] **Step 4: Implement snippets**
+- [x] **Step 4: Implement snippets**
 
 Create `src/snippets.js`:
 
@@ -450,7 +451,7 @@ export function dedupeSnippets(snippets) {
 }
 ```
 
-- [ ] **Step 5: Implement token budget**
+- [x] **Step 5: Implement token budget**
 
 Create `src/tokenBudget.js`:
 
@@ -476,13 +477,13 @@ export function trimToBudget(results, maxTokens) {
 }
 ```
 
-- [ ] **Step 6: Run tests to verify pass**
+- [x] **Step 6: Run tests to verify pass**
 
 Run: `node --test test/snippets.test.js test/tokenBudget.test.js`
 
 Expected: PASS.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add src/snippets.js src/tokenBudget.js test/snippets.test.js test/tokenBudget.test.js
@@ -500,7 +501,7 @@ git commit -m "feat: add snippet and token budget helpers"
 - Create: `test/fixtures/sample-project/src/users/createUser.ts`
 - Create: `test/fixtures/sample-project/test/login.test.ts`
 
-- [ ] **Step 1: Create fixture files**
+- [x] **Step 1: Create fixture files**
 
 Create `test/fixtures/sample-project/src/server.ts`:
 
@@ -546,7 +547,7 @@ test("login failure returns 401 without authorization", () => {
 });
 ```
 
-- [ ] **Step 2: Write ranking tests**
+- [x] **Step 2: Write ranking tests**
 
 Create `test/ranker.test.js`:
 
@@ -579,13 +580,13 @@ test("rankMatches raises test files for test queries", async () => {
 });
 ```
 
-- [ ] **Step 3: Run tests to verify failure**
+- [x] **Step 3: Run tests to verify failure**
 
 Run: `node --test test/ranker.test.js`
 
 Expected: FAIL with module-not-found errors.
 
-- [ ] **Step 4: Implement scanner**
+- [x] **Step 4: Implement scanner**
 
 Create `src/scanner.js`:
 
@@ -647,7 +648,7 @@ export async function scanFiles(workspaceRoot, files, keywords) {
 }
 ```
 
-- [ ] **Step 5: Implement ranker**
+- [x] **Step 5: Implement ranker**
 
 Create `src/ranker.js`:
 
@@ -676,13 +677,13 @@ export function rankMatches(workspaceRoot, matches, keywords, query) {
 }
 ```
 
-- [ ] **Step 6: Run tests to verify pass**
+- [x] **Step 6: Run tests to verify pass**
 
 Run: `node --test test/ranker.test.js`
 
 Expected: PASS.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add src/scanner.js src/ranker.js test/ranker.test.js test/fixtures/sample-project
@@ -695,7 +696,7 @@ git commit -m "feat: add scanner and ranking"
 - Create: `src/searchEngine.js`
 - Create: `test/searchEngine.test.js`
 
-- [ ] **Step 1: Write search engine tests**
+- [x] **Step 1: Write search engine tests**
 
 Create `test/searchEngine.test.js`:
 
@@ -735,13 +736,13 @@ test("smartContext returns empty results for no match", async () => {
 });
 ```
 
-- [ ] **Step 2: Run tests to verify failure**
+- [x] **Step 2: Run tests to verify failure**
 
 Run: `node --test test/searchEngine.test.js`
 
 Expected: FAIL with module-not-found error for `src/searchEngine.js`.
 
-- [ ] **Step 3: Implement search engine**
+- [x] **Step 3: Implement search engine**
 
 Create `src/searchEngine.js`:
 
@@ -828,19 +829,19 @@ export async function smartContext(input) {
 }
 ```
 
-- [ ] **Step 4: Run tests to verify pass**
+- [x] **Step 4: Run tests to verify pass**
 
 Run: `node --test test/searchEngine.test.js`
 
 Expected: PASS.
 
-- [ ] **Step 5: Run all unit tests**
+- [x] **Step 5: Run all unit tests**
 
 Run: `npm run test:unit`
 
 Expected: PASS.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add src/searchEngine.js test/searchEngine.test.js
@@ -854,7 +855,7 @@ git commit -m "feat: add smart context search engine"
 - Create: `test/logger.test.js`
 - Modify: `src/searchEngine.js`
 
-- [ ] **Step 1: Write logger tests**
+- [x] **Step 1: Write logger tests**
 
 Create `test/logger.test.js`:
 
@@ -891,13 +892,13 @@ test("writeUsageLog stores stats without query or snippets", async () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify failure**
+- [x] **Step 2: Run test to verify failure**
 
 Run: `node --test test/logger.test.js`
 
 Expected: FAIL with module-not-found error.
 
-- [ ] **Step 3: Implement logger**
+- [x] **Step 3: Implement logger**
 
 Create `src/logger.js`:
 
@@ -929,7 +930,7 @@ export async function writeUsageLog(workspaceRoot, event) {
 }
 ```
 
-- [ ] **Step 4: Modify search engine to log success and errors**
+- [x] **Step 4: Modify search engine to log success and errors**
 
 Update `src/searchEngine.js` imports:
 
@@ -971,13 +972,13 @@ if (input.workspaceRoot) {
 return structured;
 ```
 
-- [ ] **Step 5: Run tests to verify pass**
+- [x] **Step 5: Run tests to verify pass**
 
 Run: `node --test test/logger.test.js test/searchEngine.test.js`
 
 Expected: PASS.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add src/logger.js src/searchEngine.js test/logger.test.js
@@ -990,7 +991,7 @@ git commit -m "feat: add privacy preserving usage logs"
 - Create: `mcp/smart-context-server.js`
 - Create: `test/mcpServer.test.js`
 
-- [ ] **Step 1: Write MCP helper test**
+- [x] **Step 1: Write MCP helper test**
 
 Create `test/mcpServer.test.js`:
 
@@ -1016,13 +1017,13 @@ test("smartContextTool returns MCP text content", async () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify failure**
+- [x] **Step 2: Run test to verify failure**
 
 Run: `node --test test/mcpServer.test.js`
 
 Expected: FAIL with module-not-found error.
 
-- [ ] **Step 3: Implement MCP server**
+- [x] **Step 3: Implement MCP server**
 
 Create `mcp/smart-context-server.js`:
 
@@ -1091,19 +1092,19 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 }
 ```
 
-- [ ] **Step 4: Run MCP tests**
+- [x] **Step 4: Run MCP tests**
 
 Run: `node --test test/mcpServer.test.js`
 
 Expected: PASS.
 
-- [ ] **Step 5: Run integration tests**
+- [x] **Step 5: Run integration tests**
 
 Run: `npm run test:integration`
 
 Expected: PASS.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add mcp/smart-context-server.js test/mcpServer.test.js
@@ -1116,7 +1117,7 @@ git commit -m "feat: expose smart context mcp tools"
 - Modify: `README.md`
 - Modify: `docs/superpowers/specs/2026-05-05-smart-context-design.md` only if implementation discoveries require clarification.
 
-- [ ] **Step 1: Update README with install and usage details**
+- [x] **Step 1: Update README with install and usage details**
 
 Replace `README.md` with:
 
@@ -1175,31 +1176,31 @@ npm run start:mcp
 ```
 ```
 
-- [ ] **Step 2: Run all tests**
+- [x] **Step 2: Run all tests**
 
 Run: `npm test`
 
 Expected: PASS for all test files.
 
-- [ ] **Step 3: Run MCP server smoke command**
+- [x] **Step 3: Run MCP server smoke command**
 
 Run: `node mcp/smart-context-server.js`
 
 Expected: process starts and waits on stdio without throwing. Stop it with `Ctrl+C` after confirming it starts.
 
-- [ ] **Step 4: Check privacy log content**
+- [x] **Step 4: Check privacy log content**
 
 Run: `Get-Content -Raw test\\fixtures\\sample-project\\.smart-context\\logs\\*.jsonl`
 
 Expected: JSONL contains `query_hash`, counts, and savings numbers. It does not contain raw query text or code snippets.
 
-- [ ] **Step 5: Check git status**
+- [x] **Step 5: Check git status**
 
 Run: `git status --short`
 
 Expected: only intended files changed.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add README.md docs/superpowers/specs/2026-05-05-smart-context-design.md
