@@ -1,12 +1,8 @@
 {
   "name": "smart-context",
   "version": "0.1.0",
-  "description": "Efficient local code discovery for Claude Code.",
-  "author": "local",
-  "mcpServers": {
-    "smart-context-local": {
-      "command": "node",
-      "args": ["mcp/smart-context-server.js"]
-    }
+  "description": "Efficient local code discovery for Claude Code via a smart_context MCP tool.",
+  "author": {
+    "name": "local"
   }
 }

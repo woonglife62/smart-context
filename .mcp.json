@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "smart-context-local": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp/smart-context-server.js"]
+    }
+  }
+}
