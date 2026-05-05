@@ -6,6 +6,8 @@ import { listTextFiles, scanFiles } from "./scanner.js";
 import { rankMatches } from "./ranker.js";
 import { dedupeSnippets, extractSnippet } from "./snippets.js";
 import { estimateResultTokens, trimToBudget } from "./tokenBudget.js";
+import { writeUsageLog } from "./logger.js";
+import { hashQuery } from "./query.js";
 
 function validateInput(input) {
   if (!input.query || String(input.query).trim().length === 0) {
@@ -49,6 +51,7 @@ export async function smartContext(input) {
   try {
     const { mode, maxTokens } = validateInput(input);
     const workspaceRoot = input.workspaceRoot || process.cwd();
+    const queryHash = hashQuery(input.query);
     const keywords = extractKeywords(input.query);
     if (keywords.length === 0) throw new SmartContextError("invalid_query", "query must include at least one searchable keyword");
 
@@ -73,8 +76,24 @@ export async function smartContext(input) {
       }
     };
     if (mode !== "brief") response.summary = buildSummary(results);
+    await writeUsageLog(workspaceRoot, {
+      query_hash: queryHash,
+      mode,
+      searched_path_count: searchPaths.length,
+      stats: response.stats
+    });
     return response;
   } catch (error) {
-    return structuredError(error);
+    const structured = structuredError(error);
+    if (input.workspaceRoot) {
+      await writeUsageLog(input.workspaceRoot, {
+        query_hash: input.query ? hashQuery(input.query) : "missing",
+        mode: input.mode || "brief",
+        searched_path_count: Array.isArray(input.paths) ? input.paths.length : 1,
+        stats: {},
+        error_code: structured.error.code
+      }).catch(() => undefined);
+    }
+    return structured;
   }
 }
