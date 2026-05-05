@@ -68,3 +68,23 @@ test("rankMatches deprioritizes .txt files like markdown", () => {
   // 0 path matches (notes.txt has no "auth"), density 2, symbol (function) 2, non-test 2 = 6 -> *0.5 = 3
   assert.equal(ranked[0].score, 3);
 });
+
+test("rankMatches finds createUser.ts via expanded camelCase keywords", async () => {
+  const { extractKeywords } = await import("../src/query.js");
+  const keywords = extractKeywords("user create");
+  // keywords should include "user" and "create" as sub-tokens
+  const lines = ['export async function createUser(req, res) {'];
+  const matches = [
+    {
+      filePath: "/x/users/createUser.ts",
+      relativeFile: "users/createUser.ts",
+      lines,
+      matches: [{ line: 0, text: lines[0] }]
+    }
+  ];
+  const ranked = rankMatches("/x", matches, keywords, "user create");
+  assert.ok(ranked.length > 0);
+  assert.ok(ranked[0].score > 0, `score should be > 0, got ${ranked[0].score}`);
+  // path "users/createUser.ts" contains "user" and "create" — both from keyword expansion
+  assert.ok(ranked[0].score >= 8, `expected path score boost from 'user'+'create' keywords, got ${ranked[0].score}`);
+});
