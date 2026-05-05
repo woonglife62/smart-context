@@ -45,9 +45,9 @@ export function aggregateByCategory(perQuery) {
     const n = list.length;
     out[cat] = {
       n,
-      top1_rate: list.filter((e) => e.score.top1).length / n,
-      top3_rate: list.filter((e) => e.score.top3).length / n,
-      mrr: list.reduce((a, e) => a + e.score.rr, 0) / n
+      top1_rate: list.filter((e) => e.score?.top1).length / n,
+      top3_rate: list.filter((e) => e.score?.top3).length / n,
+      mrr: list.reduce((a, e) => a + (e.score?.rr ?? 0), 0) / n
     };
   }
   return out;
