@@ -11,7 +11,23 @@ npm install
 npm test
 ```
 
-In Claude Code, add this repository as a local plugin using Claude Code's plugin workflow, then restart Claude Code. The plugin declares the local MCP server in `.claude-plugin/plugin.json`.
+### Register With Claude Code
+
+This repo ships its own local marketplace at `.claude-plugin/marketplace.json`. Inside Claude Code:
+
+```
+/plugin marketplace add <ABSOLUTE_PATH_TO_THIS_REPO>
+/plugin install smart-context@smart-context-local
+/reload-plugins
+```
+
+Then confirm the MCP server is healthy:
+
+```
+/mcp
+```
+
+You should see `smart-context-local` in the list. Claude can now call `smart_context` and `smart_context_explain` directly.
 
 ## Tool
 
