@@ -9,7 +9,10 @@ export const DEFAULT_EXCLUDES = [
   "coverage",
   ".smart-context",
   ".cache",
-  "tmp"
+  "tmp",
+  ".worktrees",
+  ".omc",
+  ".claude"
 ];
 
 export const DEFAULT_BUDGETS = {
