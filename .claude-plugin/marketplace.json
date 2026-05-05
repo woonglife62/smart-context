@@ -3,12 +3,18 @@
   "owner": {
     "name": "local"
   },
+  "metadata": {
+    "description": "Local marketplace for the smart-context plugin."
+  },
   "plugins": [
     {
       "name": "smart-context",
-      "source": ".",
+      "source": "./",
       "description": "Efficient local code discovery for Claude Code via a smart_context MCP tool.",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "author": {
+        "name": "local"
+      }
     }
   ]
 }
