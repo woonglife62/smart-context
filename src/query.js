@@ -1,6 +1,12 @@
 import crypto from "node:crypto";
 
-const STOP_WORDS = new Set(["the", "and", "for", "with", "where", "what", "when", "how", "why", "is", "are", "was", "were", "in", "on", "to", "of"]);
+const STOP_WORDS = new Set([
+  "the", "and", "for", "with", "where", "what", "when", "how", "why",
+  "is", "are", "was", "were", "in", "on", "to", "of",
+  // Code-intent describers: tell us HOW the user wants to find, not WHAT we're searching for.
+  // Keeping them as keywords makes them match every code file (every file has functions, classes...).
+  "function", "class", "method", "definition", "implementation"
+]);
 
 function splitSubTokens(token) {
   // Split camelCase boundaries then split on _, -, and . (strips extensions too)
@@ -26,24 +32,20 @@ export function extractKeywords(query) {
 
   const seen = new Set();
   const result = [];
+  const tryAdd = (word) => {
+    if (word.length < 4) return;
+    if (STOP_WORDS.has(word)) return;
+    if (seen.has(word)) return;
+    seen.add(word);
+    result.push(word);
+  };
 
   for (const original of rawTokens) {
-    const lower = original.toLowerCase();
-    if (!STOP_WORDS.has(lower)) {
-      if (!seen.has(lower)) {
-        seen.add(lower);
-        result.push(lower);
-      }
-    }
+    tryAdd(original.toLowerCase());
     // Split the original (mixed-case) token to detect camelCase/snake/kebab
     const subs = splitSubTokens(original);
     if (subs.length > 1) {
-      for (const sub of subs) {
-        if (sub.length >= 4 && !STOP_WORDS.has(sub) && !seen.has(sub)) {
-          seen.add(sub);
-          result.push(sub);
-        }
-      }
+      for (const sub of subs) tryAdd(sub);
     }
   }
 

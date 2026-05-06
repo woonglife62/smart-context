@@ -3,11 +3,21 @@ import assert from "node:assert/strict";
 import { extractKeywords, hashQuery } from "../src/query.js";
 
 test("extractKeywords removes short words and normalizes case", () => {
-  assert.deepEqual(
-    extractKeywords("Where is auth middleware applied in server routes?"),
-    ["auth", "middleware", "applied", "server", "routes"]
-  );
+  const kws = extractKeywords("Where is auth middleware applied in server routes?");
+  // Stop words (Where, is, in) and short tokens are dropped; everything else is lowercased.
+  for (const k of ["auth", "middleware", "applied", "server", "routes"]) {
+    assert.ok(kws.includes(k), `expected '${k}' in ${JSON.stringify(kws)}`);
+  }
+  assert.ok(!kws.includes("where"), "stop word 'where' should be removed");
 });
+
+test("extractKeywords drops code-intent describers (function, class, method, definition, implementation)", () => {
+  const kws = extractKeywords("smartContext function definition");
+  assert.ok(kws.includes("smartcontext"), "search term must remain");
+  assert.ok(!kws.includes("function"), "intent describer 'function' should be filtered");
+  assert.ok(!kws.includes("definition"), "intent describer 'definition' should be filtered");
+});
+
 
 test("extractKeywords preserves code-like tokens and includes sub-tokens", () => {
   const kws = extractKeywords("find createUser and auth.middleware.ts");

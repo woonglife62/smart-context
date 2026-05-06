@@ -69,6 +69,58 @@ test("rankMatches deprioritizes .txt files like markdown", () => {
   assert.ok(Math.abs(ranked[0].score - 1.2) < 0.01, `expected ~1.2 got ${ranked[0].score}`);
 });
 
+test("rankMatches gives a +5 definition bonus so the defining file beats the caller", () => {
+  const definesLines = ["export function smartContext() {"];
+  const callerLines = ["smartContext();", "smartContext();", "smartContext();"];
+  const matches = [
+    {
+      filePath: "/x/defines.js",
+      relativeFile: "defines.js",
+      lines: definesLines,
+      matches: [{ line: 0, text: definesLines[0] }]
+    },
+    {
+      filePath: "/x/caller.js",
+      relativeFile: "caller.js",
+      lines: callerLines,
+      matches: [
+        { line: 0, text: callerLines[0] },
+        { line: 1, text: callerLines[1] },
+        { line: 2, text: callerLines[2] }
+      ]
+    }
+  ];
+  const ranked = rankMatches("/x", matches, ["smartcontext"], "smartContext function definition");
+  assert.equal(ranked[0].file, "defines.js");
+});
+
+test("rankMatches definition bonus does not apply to prose files (.md/.txt)", () => {
+  const codeLines = ["function authMiddleware() {}"];
+  const proseLines = ["function authMiddleware() {}"];
+  const matches = [
+    {
+      filePath: "/x/code.js",
+      relativeFile: "src/code.js",
+      lines: codeLines,
+      matches: [{ line: 0, text: codeLines[0] }]
+    },
+    {
+      filePath: "/x/notes.md",
+      relativeFile: "docs/notes.md",
+      lines: proseLines,
+      matches: [{ line: 0, text: proseLines[0] }]
+    }
+  ];
+  // Code-style query keeps prose multiplier at 0.2 so the def-bonus difference is visible.
+  const ranked = rankMatches("/x", matches, ["auth"], "authMiddleware");
+  const code = ranked.find((r) => r.file === "src/code.js");
+  const md = ranked.find((r) => r.file === "docs/notes.md");
+  // code: 0 path + 2 density + 2 symbol + 2 non-test + 5 def = 11, x1.0 = 11
+  // md:   same raw 6 without the 5 def bonus, x0.2 = 1.2
+  assert.ok(Math.abs(code.score - 11) < 0.01, `code expected 11 got ${code.score}`);
+  assert.ok(Math.abs(md.score - 1.2) < 0.01, `md expected 1.2 (def bonus skipped) got ${md.score}`);
+});
+
 test("rankMatches finds createUser.ts via expanded camelCase keywords", async () => {
   const { extractKeywords } = await import("../src/query.js");
   const keywords = extractKeywords("user create");

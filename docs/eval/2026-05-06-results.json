@@ -1,0 +1,766 @@
+{
+  "timestamp": "2026-05-06T06:44:18.009Z",
+  "env": {
+    "node": "v22.19.0",
+    "os": "win32-10.0.26200",
+    "rg": "ripgrep 14.1.0 (rev e50df40a19)",
+    "head_sha": "c53581f"
+  },
+  "metrics": {
+    "ranking": {
+      "overall": {
+        "top1_rate": 0.3333333333333333,
+        "top3_rate": 0.5555555555555556,
+        "mrr": 0.4305555555555556
+      },
+      "by_category": {
+        "exact_identifier": {
+          "n": 3,
+          "top1_rate": 0,
+          "top3_rate": 0.6666666666666666,
+          "mrr": 0.3611111111111111
+        },
+        "conceptual": {
+          "n": 3,
+          "top1_rate": 0.3333333333333333,
+          "top3_rate": 0.3333333333333333,
+          "mrr": 0.3333333333333333
+        },
+        "camelcase_split": {
+          "n": 3,
+          "top1_rate": 0.3333333333333333,
+          "top3_rate": 1,
+          "mrr": 0.5555555555555555
+        },
+        "prose_only": {
+          "n": 3,
+          "top1_rate": 0,
+          "top3_rate": 0,
+          "mrr": 0
+        },
+        "distractor": {
+          "n": 3,
+          "top1_rate": 0.6666666666666666,
+          "top3_rate": 0.6666666666666666,
+          "mrr": 0.6666666666666666
+        },
+        "edge": {
+          "n": 3,
+          "top1_rate": 0.6666666666666666,
+          "top3_rate": 0.6666666666666666,
+          "mrr": 0.6666666666666666
+        }
+      }
+    },
+    "tokens": {
+      "avg_b1_over_b2": 1.002923738074187,
+      "avg_b1_over_b3": 0.6597497403435516,
+      "per_query": [
+        {
+          "id": "exact-1",
+          "b1": 7200,
+          "b2": 10664,
+          "b3": 14339,
+          "b1_over_b2": 0.6751687921980495,
+          "b1_over_b3": 0.5021270660436572
+        },
+        {
+          "id": "exact-2",
+          "b1": 7200,
+          "b2": 2257,
+          "b3": 3986,
+          "b1_over_b2": 3.1900753212228623,
+          "b1_over_b3": 1.8063221274460612
+        },
+        {
+          "id": "exact-3",
+          "b1": 7200,
+          "b2": 11574,
+          "b3": 13182,
+          "b1_over_b2": 0.6220839813374806,
+          "b1_over_b3": 0.5461993627674101
+        },
+        {
+          "id": "concept-1",
+          "b1": 7200,
+          "b2": 17051,
+          "b3": 22148,
+          "b1_over_b2": 0.4222626238930268,
+          "b1_over_b3": 0.32508578652700015
+        },
+        {
+          "id": "concept-2",
+          "b1": 7200,
+          "b2": 9526,
+          "b3": 12948,
+          "b1_over_b2": 0.7558261599832039,
+          "b1_over_b3": 0.5560704355885079
+        },
+        {
+          "id": "concept-3",
+          "b1": 7200,
+          "b2": 3483,
+          "b3": 5350,
+          "b1_over_b2": 2.0671834625322996,
+          "b1_over_b3": 1.3457943925233644
+        },
+        {
+          "id": "camel-1",
+          "b1": 7200,
+          "b2": 2257,
+          "b3": 3986,
+          "b1_over_b2": 3.1900753212228623,
+          "b1_over_b3": 1.8063221274460612
+        },
+        {
+          "id": "camel-2",
+          "b1": 7200,
+          "b2": 11574,
+          "b3": 13182,
+          "b1_over_b2": 0.6220839813374806,
+          "b1_over_b3": 0.5461993627674101
+        },
+        {
+          "id": "camel-3",
+          "b1": 7200,
+          "b2": 12475,
+          "b3": 12869,
+          "b1_over_b2": 0.5771543086172345,
+          "b1_over_b3": 0.5594840313932706
+        },
+        {
+          "id": "prose-1",
+          "b1": 7200,
+          "b2": 9723,
+          "b3": 22578,
+          "b1_over_b2": 0.7405121875964209,
+          "b1_over_b3": 0.31889449906989104
+        },
+        {
+          "id": "prose-2",
+          "b1": 7200,
+          "b2": 18301,
+          "b3": 34285,
+          "b1_over_b2": 0.3934211245287143,
+          "b1_over_b3": 0.21000437509114772
+        },
+        {
+          "id": "prose-3",
+          "b1": 7200,
+          "b2": 11046,
+          "b3": 18863,
+          "b1_over_b2": 0.6518196632265073,
+          "b1_over_b3": 0.3816996236017601
+        },
+        {
+          "id": "distract-1",
+          "b1": 7200,
+          "b2": 11082,
+          "b3": 12500,
+          "b1_over_b2": 0.6497022198159177,
+          "b1_over_b3": 0.576
+        },
+        {
+          "id": "distract-2",
+          "b1": 7200,
+          "b2": 11757,
+          "b3": 26596,
+          "b1_over_b2": 0.6124011227353917,
+          "b1_over_b3": 0.27071740111294934
+        },
+        {
+          "id": "distract-3",
+          "b1": 7200,
+          "b2": 12896,
+          "b3": 13361,
+          "b1_over_b2": 0.5583126550868487,
+          "b1_over_b3": 0.5388818202230372
+        },
+        {
+          "id": "edge-1",
+          "b1": 0,
+          "b2": 0,
+          "b3": 0,
+          "b1_over_b2": 0,
+          "b1_over_b3": 0
+        },
+        {
+          "id": "edge-2",
+          "b1": 7200,
+          "b2": 22592,
+          "b3": 27048,
+          "b1_over_b2": 0.31869688385269124,
+          "b1_over_b3": 0.26619343389529726
+        },
+        {
+          "id": "edge-3",
+          "b1": 0,
+          "b2": 0,
+          "b3": 0,
+          "b1_over_b2": 0,
+          "b1_over_b3": 0
+        }
+      ]
+    },
+    "consistency": {
+      "total": 18,
+      "set_equal_count": 18,
+      "order_equal_count": 18
+    },
+    "latency": {
+      "warm_p50_rg": 129,
+      "warm_p95_rg": 140,
+      "warm_p50_node": 34,
+      "warm_p95_node": 45,
+      "mcp_overhead_ms": 72
+    }
+  },
+  "queries": [
+    {
+      "id": "exact-1",
+      "category": "exact_identifier",
+      "query": "smartContext function definition",
+      "score": {
+        "top1": false,
+        "top3": false,
+        "rr": 0.25,
+        "rank": 4
+      },
+      "latencies_ms": [
+        246,
+        139,
+        141
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 7200,
+        "b2": 10664,
+        "b3": 14339,
+        "b1_over_b2": 0.6751687921980495,
+        "b1_over_b3": 0.5021270660436572
+      }
+    },
+    {
+      "id": "exact-2",
+      "category": "exact_identifier",
+      "query": "tokenBudget trim",
+      "score": {
+        "top1": false,
+        "top3": true,
+        "rr": 0.3333333333333333,
+        "rank": 3
+      },
+      "latencies_ms": [
+        144,
+        135,
+        140
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 7200,
+        "b2": 2257,
+        "b3": 3986,
+        "b1_over_b2": 3.1900753212228623,
+        "b1_over_b3": 1.8063221274460612
+      }
+    },
+    {
+      "id": "exact-3",
+      "category": "exact_identifier",
+      "query": "pathSafety validation",
+      "score": {
+        "top1": false,
+        "top3": true,
+        "rr": 0.5,
+        "rank": 2
+      },
+      "latencies_ms": [
+        131,
+        130,
+        129
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 7200,
+        "b2": 11574,
+        "b3": 13182,
+        "b1_over_b2": 0.6220839813374806,
+        "b1_over_b3": 0.5461993627674101
+      }
+    },
+    {
+      "id": "concept-1",
+      "category": "conceptual",
+      "query": "how queries are tokenized",
+      "score": {
+        "top1": false,
+        "top3": false,
+        "rr": 0,
+        "rank": 0
+      },
+      "latencies_ms": [
+        125,
+        124,
+        123
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 7200,
+        "b2": 17051,
+        "b3": 22148,
+        "b1_over_b2": 0.4222626238930268,
+        "b1_over_b3": 0.32508578652700015
+      }
+    },
+    {
+      "id": "concept-2",
+      "category": "conceptual",
+      "query": "where ranking score is computed",
+      "score": {
+        "top1": true,
+        "top3": true,
+        "rr": 1,
+        "rank": 1
+      },
+      "latencies_ms": [
+        130,
+        126,
+        129
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 7200,
+        "b2": 9526,
+        "b3": 12948,
+        "b1_over_b2": 0.7558261599832039,
+        "b1_over_b3": 0.5560704355885079
+      }
+    },
+    {
+      "id": "concept-3",
+      "category": "conceptual",
+      "query": "usage logging and stats",
+      "score": {
+        "top1": false,
+        "top3": false,
+        "rr": 0,
+        "rank": 0
+      },
+      "latencies_ms": [
+        130,
+        134,
+        130
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 7200,
+        "b2": 3483,
+        "b3": 5350,
+        "b1_over_b2": 2.0671834625322996,
+        "b1_over_b3": 1.3457943925233644
+      }
+    },
+    {
+      "id": "camel-1",
+      "category": "camelcase_split",
+      "query": "tokenBudgetTrim",
+      "score": {
+        "top1": false,
+        "top3": true,
+        "rr": 0.3333333333333333,
+        "rank": 3
+      },
+      "latencies_ms": [
+        135,
+        135,
+        136
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 7200,
+        "b2": 2257,
+        "b3": 3986,
+        "b1_over_b2": 3.1900753212228623,
+        "b1_over_b3": 1.8063221274460612
+      }
+    },
+    {
+      "id": "camel-2",
+      "category": "camelcase_split",
+      "query": "pathSafetyValidation",
+      "score": {
+        "top1": false,
+        "top3": true,
+        "rr": 0.3333333333333333,
+        "rank": 3
+      },
+      "latencies_ms": [
+        142,
+        132,
+        129
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 7200,
+        "b2": 11574,
+        "b3": 13182,
+        "b1_over_b2": 0.6220839813374806,
+        "b1_over_b3": 0.5461993627674101
+      }
+    },
+    {
+      "id": "camel-3",
+      "category": "camelcase_split",
+      "query": "searchEngineCompose",
+      "score": {
+        "top1": true,
+        "top3": true,
+        "rr": 1,
+        "rank": 1
+      },
+      "latencies_ms": [
+        132,
+        130,
+        136
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 7200,
+        "b2": 12475,
+        "b3": 12869,
+        "b1_over_b2": 0.5771543086172345,
+        "b1_over_b3": 0.5594840313932706
+      }
+    },
+    {
+      "id": "prose-1",
+      "category": "prose_only",
+      "query": "install instructions",
+      "score": {
+        "top1": false,
+        "top3": false,
+        "rr": 0,
+        "rank": 0
+      },
+      "latencies_ms": [
+        129,
+        127,
+        122
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 7200,
+        "b2": 9723,
+        "b3": 22578,
+        "b1_over_b2": 0.7405121875964209,
+        "b1_over_b3": 0.31889449906989104
+      }
+    },
+    {
+      "id": "prose-2",
+      "category": "prose_only",
+      "query": "privacy guarantees",
+      "score": {
+        "top1": false,
+        "top3": false,
+        "rr": 0,
+        "rank": 0
+      },
+      "latencies_ms": [
+        119,
+        119,
+        119
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 7200,
+        "b2": 18301,
+        "b3": 34285,
+        "b1_over_b2": 0.3934211245287143,
+        "b1_over_b3": 0.21000437509114772
+      }
+    },
+    {
+      "id": "prose-3",
+      "category": "prose_only",
+      "query": "design rationale for modes",
+      "score": {
+        "top1": false,
+        "top3": false,
+        "rr": 0,
+        "rank": 0
+      },
+      "latencies_ms": [
+        127,
+        125,
+        130
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 7200,
+        "b2": 11046,
+        "b3": 18863,
+        "b1_over_b2": 0.6518196632265073,
+        "b1_over_b3": 0.3816996236017601
+      }
+    },
+    {
+      "id": "distract-1",
+      "category": "distractor",
+      "query": "error handling",
+      "score": {
+        "top1": true,
+        "top3": true,
+        "rr": 1,
+        "rank": 1
+      },
+      "latencies_ms": [
+        133,
+        129,
+        127
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 7200,
+        "b2": 11082,
+        "b3": 12500,
+        "b1_over_b2": 0.6497022198159177,
+        "b1_over_b3": 0.576
+      }
+    },
+    {
+      "id": "distract-2",
+      "category": "distractor",
+      "query": "test fixtures",
+      "score": {
+        "top1": false,
+        "top3": false,
+        "rr": 0,
+        "rank": 0
+      },
+      "latencies_ms": [
+        135,
+        133,
+        133
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 7200,
+        "b2": 11757,
+        "b3": 26596,
+        "b1_over_b2": 0.6124011227353917,
+        "b1_over_b3": 0.27071740111294934
+      }
+    },
+    {
+      "id": "distract-3",
+      "category": "distractor",
+      "query": "mcp server start",
+      "score": {
+        "top1": true,
+        "top3": true,
+        "rr": 1,
+        "rank": 1
+      },
+      "latencies_ms": [
+        129,
+        130,
+        127
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 7200,
+        "b2": 12896,
+        "b3": 13361,
+        "b1_over_b2": 0.5583126550868487,
+        "b1_over_b3": 0.5388818202230372
+      }
+    },
+    {
+      "id": "edge-1",
+      "category": "edge",
+      "query": "",
+      "score": {
+        "top1": true,
+        "top3": true,
+        "rr": 1,
+        "rank": 0,
+        "edge": true
+      },
+      "latencies_ms": [
+        1,
+        1,
+        1
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 0,
+        "b2": 0,
+        "b3": 0,
+        "b1_over_b2": 0,
+        "b1_over_b3": 0
+      }
+    },
+    {
+      "id": "edge-2",
+      "category": "edge",
+      "query": "aaaaa",
+      "score": {
+        "top1": false,
+        "top3": false,
+        "rr": 0,
+        "rank": 0,
+        "edge": true
+      },
+      "latencies_ms": [
+        129,
+        126,
+        120
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 7200,
+        "b2": 22592,
+        "b3": 27048,
+        "b1_over_b2": 0.31869688385269124,
+        "b1_over_b3": 0.26619343389529726
+      }
+    },
+    {
+      "id": "edge-3",
+      "category": "edge",
+      "query": "인증 미들웨어",
+      "score": {
+        "top1": true,
+        "top3": true,
+        "rr": 1,
+        "rank": 0,
+        "edge": true
+      },
+      "latencies_ms": [
+        1,
+        1,
+        2
+      ],
+      "consistency": {
+        "set_equal": true,
+        "order_equal": true
+      },
+      "baselines": {
+        "b1": 0,
+        "b2": 0,
+        "b3": 0,
+        "b1_over_b2": 0,
+        "b1_over_b3": 0
+      }
+    }
+  ],
+  "issues": [
+    {
+      "severity": "P1",
+      "title": "exact_identifier top-1 below threshold (0.00 < 0.9)",
+      "evidence": [
+        "exact-1: rank 4",
+        "exact-2: rank 3",
+        "exact-3: rank 2"
+      ],
+      "hypothesis": "category-specific ranking weakness",
+      "fix_proposal": "see triage protocol in plan §E",
+      "classification": "investigate"
+    },
+    {
+      "severity": "P1",
+      "title": "conceptual top-1 below threshold (0.33 < 0.6)",
+      "evidence": [
+        "concept-1: rank 0",
+        "concept-3: rank 0"
+      ],
+      "hypothesis": "category-specific ranking weakness",
+      "fix_proposal": "see triage protocol in plan §E",
+      "classification": "investigate"
+    },
+    {
+      "severity": "P1",
+      "title": "prose_only top-1 below threshold (0.00 < 0.6)",
+      "evidence": [
+        "prose-1: rank 0",
+        "prose-2: rank 0",
+        "prose-3: rank 0"
+      ],
+      "hypothesis": "category-specific ranking weakness",
+      "fix_proposal": "see triage protocol in plan §E",
+      "classification": "investigate"
+    },
+    {
+      "severity": "P1",
+      "title": "distractor top-1 below threshold (0.67 < 0.7)",
+      "evidence": [
+        "distract-2: rank 0"
+      ],
+      "hypothesis": "category-specific ranking weakness",
+      "fix_proposal": "see triage protocol in plan §E",
+      "classification": "investigate"
+    },
+    {
+      "severity": "P2",
+      "title": "warm p50 above 100ms with ripgrep",
+      "evidence": [
+        "warm_p50_rg = 129"
+      ],
+      "hypothesis": "scanner overhead",
+      "fix_proposal": "report-only — profile in next cycle",
+      "classification": "report-only"
+    }
+  ]
+}
