@@ -1,0 +1,120 @@
+{
+  "timestamp": "2026-05-06T05:20:07.697Z",
+  "model_id": "claude-opus-4-7",
+  "metrics": {
+    "median_savings": -0.33724360536653775,
+    "win_count": 0,
+    "valid_count": 4,
+    "total_count": 5,
+    "quality_regression_count": 1
+  },
+  "tasks": [
+    {
+      "task_id": "wf-1",
+      "with_billable": 52226.8,
+      "without_billable": 37569.4,
+      "savings": -0.39014197724744076,
+      "with_tool_calls": {
+        "smart_context": 0,
+        "other": 3
+      },
+      "without_tool_calls": {
+        "Read": 2,
+        "Grep": 2
+      },
+      "with_turns": 4,
+      "without_turns": 4,
+      "quality_with": "정답",
+      "quality_without": "정답",
+      "valid": true,
+      "valid_reason": null
+    },
+    {
+      "task_id": "wf-2",
+      "with_billable": 52330,
+      "without_billable": 62939.95,
+      "savings": 0.16857258386763888,
+      "with_tool_calls": {
+        "smart_context": 0,
+        "other": 7
+      },
+      "without_tool_calls": {
+        "Read": 4,
+        "Glob": 7,
+        "Grep": 2
+      },
+      "with_turns": 8,
+      "without_turns": 9,
+      "quality_with": "부분정답",
+      "quality_without": "정답",
+      "valid": false,
+      "valid_reason": "quality regression (with < without)"
+    },
+    {
+      "task_id": "wf-3",
+      "with_billable": 55352.350000000006,
+      "without_billable": 37266.6,
+      "savings": -0.485307218796456,
+      "with_tool_calls": {
+        "smart_context": 0,
+        "other": 8
+      },
+      "without_tool_calls": {
+        "Read": 2,
+        "Edit": 1,
+        "Bash": 1
+      },
+      "with_turns": 7,
+      "without_turns": 5,
+      "quality_with": "정답",
+      "quality_without": "정답",
+      "valid": true,
+      "valid_reason": null
+    },
+    {
+      "task_id": "wf-4",
+      "with_billable": 46437.3,
+      "without_billable": 36156.4,
+      "savings": -0.2843452334856347,
+      "with_tool_calls": {
+        "smart_context": 0,
+        "other": 7
+      },
+      "without_tool_calls": {
+        "Grep": 8
+      },
+      "with_turns": 8,
+      "without_turns": 5,
+      "quality_with": "정답",
+      "quality_without": "정답",
+      "valid": true,
+      "valid_reason": null
+    },
+    {
+      "task_id": "wf-5",
+      "with_billable": 47432.350000000006,
+      "without_billable": 43190,
+      "savings": -0.09822528363047014,
+      "with_tool_calls": {
+        "smart_context": 0,
+        "other": 7
+      },
+      "without_tool_calls": {
+        "Read": 3,
+        "Grep": 2
+      },
+      "with_turns": 6,
+      "without_turns": 6,
+      "quality_with": "정답",
+      "quality_without": "정답",
+      "valid": true,
+      "valid_reason": null
+    }
+  ],
+  "caveats": [
+    "Sample size: 5 tasks × 1 trial each. Trends, not proofs.",
+    "Single evaluator; quality judgment is the user's.",
+    "Single repo; results may differ on larger codebases.",
+    "Model/version dependent; rerun on Claude version changes."
+  ]
+}

@@ -1,1 +1,6 @@
 task_id,with_session_id,without_session_id,quality_with,quality_without,notes
+wf-1,029b8862-1ffa-442e-a3db-b516b5fa6c03,aa41d0a0-25c0-4e21-9681-572ddfd3dc94,정답,정답,
+wf-2,52f12f7b-23bc-4809-8d7a-976865c9cd84,7308e300-b989-4e3c-8a66-14c8237b7076,부분정답,정답,
+wf-3,4df21bf9-eaad-401e-9f5f-f0a7195aab16,9344e67d-cdff-4f70-a2c0-25b7a9c357e0,정답,정답,
+wf-4,4690f1fe-1a8e-465a-8e2b-2567cc226706,e433f3c4-5b0a-4ccb-adc4-58267b4b2ba4,정답,정답,
+wf-5,c31ff47b-0b10-47c5-a636-e26f2f40073d,db1b9699-c8d0-4454-8ce9-42758bc5b29f,정답,정답,
