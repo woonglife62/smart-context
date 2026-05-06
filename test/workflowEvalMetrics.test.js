@@ -15,12 +15,26 @@ test("qualityRank orders 정답 > 부분정답 > 거부됨 > 틀림", () => {
   assert.equal(qualityRank("unknown"), 0);
 });
 
-test("isValidPair flags cache_read > output as invalid", () => {
-  const withSession = { usage_totals: { input_tokens: 100, output_tokens: 50, cache_creation_input_tokens: 0, cache_read_input_tokens: 200 }, tool_calls: {}, turn_count: 1 };
+test("isValidPair flags cache_read > 500x output as contamination", () => {
+  // 500x is the threshold; normal multi-turn caching is ~100-150x and should pass.
+  const withSession = { usage_totals: { input_tokens: 100, output_tokens: 50, cache_creation_input_tokens: 0, cache_read_input_tokens: 30000 }, tool_calls: {}, turn_count: 1 };
   const withoutSession = { usage_totals: { input_tokens: 100, output_tokens: 50, cache_creation_input_tokens: 0, cache_read_input_tokens: 0 }, tool_calls: {}, turn_count: 1 };
   const out = isValidPair({ withSession, withoutSession, quality_with: "정답", quality_without: "정답" });
   assert.equal(out.valid, false);
   assert.ok(out.reason.includes("cache"));
+});
+
+test("isValidPair accepts normal multi-turn caching (cache_read ~100x output)", () => {
+  // Realistic Claude Code session: cumulative cache_read can be 100-150x cumulative output across turns.
+  const session = { usage_totals: { input_tokens: 14, output_tokens: 1139, cache_creation_input_tokens: 29480, cache_read_input_tokens: 142238 }, tool_calls: {}, turn_count: 4 };
+  const out = isValidPair({ withSession: session, withoutSession: session, quality_with: "정답", quality_without: "정답" });
+  assert.equal(out.valid, true);
+});
+
+test("isValidPair flags zero output as contamination", () => {
+  const session = { usage_totals: { input_tokens: 0, output_tokens: 0, cache_creation_input_tokens: 0, cache_read_input_tokens: 100 }, tool_calls: {}, turn_count: 0 };
+  const out = isValidPair({ withSession: session, withoutSession: session, quality_with: "정답", quality_without: "정답" });
+  assert.equal(out.valid, false);
 });
 
 test("isValidPair flags quality regression as invalid", () => {

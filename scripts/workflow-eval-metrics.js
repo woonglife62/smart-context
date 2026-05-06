@@ -13,11 +13,15 @@ export function computeBillable(usage) {
   );
 }
 
+const CACHE_RATIO_LIMIT = 500;
+
 export function isValidPair({ withSession, withoutSession, quality_with, quality_without }) {
   for (const [name, s] of [["with", withSession], ["without", withoutSession]]) {
     const u = s.usage_totals;
-    if ((u.cache_read_input_tokens || 0) > (u.output_tokens || 0)) {
-      return { valid: false, reason: `cache contamination in ${name}-session` };
+    const cr = u.cache_read_input_tokens || 0;
+    const out = u.output_tokens || 0;
+    if (out === 0 || cr > CACHE_RATIO_LIMIT * out) {
+      return { valid: false, reason: `cache contamination in ${name}-session (cache_read/output ratio exceeds ${CACHE_RATIO_LIMIT}x)` };
     }
   }
   if (qualityRank(quality_with) < qualityRank(quality_without)) {

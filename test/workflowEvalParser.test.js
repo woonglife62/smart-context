@@ -54,6 +54,32 @@ test("parseTranscript skips lines that fail JSON.parse without throwing", async 
   assert.equal(out.turn_count, 1);
 });
 
+test("parseTranscript counts usage once per message.id, but keeps tool_use across content-block entries", async () => {
+  // Claude Code transcripts split one assistant message into multiple "assistant" entries —
+  // each entry = one content block (thinking, tool_use, text), all sharing the same message.id and usage.
+  const sharedUsage = { input_tokens: 10, output_tokens: 100, cache_creation_input_tokens: 0, cache_read_input_tokens: 0 };
+  const { file } = await writeFixture("dedup", [
+    { type: "assistant", message: { id: "msg_A", role: "assistant", model: "m", content: [{ type: "thinking" }], usage: sharedUsage } },
+    { type: "assistant", message: { id: "msg_A", role: "assistant", model: "m", content: [{ type: "tool_use", name: "Grep" }], usage: sharedUsage } },
+    { type: "assistant", message: { id: "msg_A", role: "assistant", model: "m", content: [{ type: "tool_use", name: "Grep" }], usage: sharedUsage } },
+    { type: "assistant", message: { id: "msg_B", role: "assistant", model: "m", content: [{ type: "tool_use", name: "Read" }], usage: { input_tokens: 5, output_tokens: 50, cache_creation_input_tokens: 0, cache_read_input_tokens: 0 } } }
+  ]);
+  const out = await parseTranscript(file);
+  assert.equal(out.turn_count, 2);
+  assert.deepEqual(out.usage_totals, { input_tokens: 15, output_tokens: 150, cache_creation_input_tokens: 0, cache_read_input_tokens: 0 });
+  assert.deepEqual(out.tool_calls, { Grep: 2, Read: 1 });
+});
+
+test("parseTranscript normalizes MCP smart_context tool name", async () => {
+  const { file } = await writeFixture("mcp-name", [
+    { type: "assistant", message: { id: "m1", role: "assistant", model: "m", content: [{ type: "tool_use", name: "mcp__plugin_smart-context_smart-context-local__smart_context" }], usage: { input_tokens: 1, output_tokens: 1, cache_creation_input_tokens: 0, cache_read_input_tokens: 0 } } },
+    { type: "assistant", message: { id: "m2", role: "assistant", model: "m", content: [{ type: "tool_use", name: "mcp__plugin_smart-context_smart-context-local__smart_context_explain" }], usage: { input_tokens: 1, output_tokens: 1, cache_creation_input_tokens: 0, cache_read_input_tokens: 0 } } }
+  ]);
+  const out = await parseTranscript(file);
+  assert.equal(out.tool_calls.smart_context, 1);
+  assert.equal(out.tool_calls.smart_context_explain, 1);
+});
+
 test("locateTranscript scans projects dir to find the sessionId", async () => {
   const projects = await fs.mkdtemp(path.join(os.tmpdir(), "wfe-projects-"));
   const sub = path.join(projects, "C--whatever");
