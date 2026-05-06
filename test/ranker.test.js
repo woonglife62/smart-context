@@ -121,6 +121,41 @@ test("rankMatches definition bonus does not apply to prose files (.md/.txt)", ()
   assert.ok(Math.abs(md.score - 1.2) < 0.01, `md expected 1.2 (def bonus skipped) got ${md.score}`);
 });
 
+test("rankMatches gives prose files a heading-match bonus so the topical doc beats body-mention noise", () => {
+  const targetLines = [
+    "# Setup",
+    "Some intro text.",
+    "## Install",
+    "Run npm install."
+  ];
+  const noiseLines = [
+    "We mention install in passing here",
+    "and discuss install briefly there",
+    "and again install elsewhere",
+    "more install talk"
+  ];
+  const matches = [
+    {
+      filePath: "/x/README.md",
+      relativeFile: "README.md",
+      lines: targetLines,
+      matches: [
+        { line: 2, text: targetLines[2] },
+        { line: 3, text: targetLines[3] }
+      ]
+    },
+    {
+      filePath: "/x/notes.md",
+      relativeFile: "docs/notes.md",
+      lines: noiseLines,
+      matches: noiseLines.map((line, i) => ({ line: i, text: line }))
+    }
+  ];
+  const ranked = rankMatches("/x", matches, ["install"], "install instructions");
+  // README has 1 heading match (## Install) → +20 heading bonus, beats noise's higher density.
+  assert.equal(ranked[0].file, "README.md");
+});
+
 test("rankMatches finds createUser.ts via expanded camelCase keywords", async () => {
   const { extractKeywords } = await import("../src/query.js");
   const keywords = extractKeywords("user create");
